@@ -36,4 +36,4 @@ Route::get('fluent-string', [FluentController::class, 'index'])->name('fluent.in
 
 //http request with form
 Route::get('/login',[LoginController::class,'index'])->name('login.index');
-Route::post('/submit',[LoginController::class,'loginSubmit'])->name('login.submit');
+Route::post('/submit',[LoginController::class,'loginSubmit'])->name('login.submit')->middleware('checkUser');
