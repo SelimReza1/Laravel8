@@ -11,18 +11,24 @@
     <title>Hello, world!</title>
 </head>
 <body>
-<div class="container">
+<div class="container mt-4">
     <form method="POST" action="{{route('login.submit')}}">
     @csrf
-    <div class="form-group offset-2">
+    <div class="form-group col-md-4 offset-md-3">
         <label for="exampleInputEmail1" class="form-label">Email address</label>
         <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        @error('email')
+        <span class="text-danger">{{$message}}</span>
+        @enderror
     </div>
-    <div class="form-group offset-2">
+    <div class="form-group col-md-4 offset-md-3">
         <label for="exampleInputPassword1" class="form-label">Password</label>
         <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+        @error('password')
+        <span class="text-danger">{{$message}}</span>
+        @enderror
     </div>
-    <button type="submit" class="btn btn-primary offset-2 mt-4">Submit</button>
+    <button type="submit" class="btn btn-primary offset-md-3 mt-4">Submit</button>
 </form>
 </div>
 <!-- Optional JavaScript; choose one of the two! -->
