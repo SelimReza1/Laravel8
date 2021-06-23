@@ -41,3 +41,6 @@ Route::post('/submit',[LoginController::class,'loginSubmit'])->name('login.submi
 
 //database start
 Route::get('/posts',[PostController::class,'getAllPost'])->name('post.getAllPost');
+
+Route::get('add-post',[PostController::class,'addPost'])->name('post.add');
+Route::post('submit-post',[PostController::class,'submitPost'])->name('post.submit');
