@@ -53,3 +53,6 @@ Route::get('delete-post/{id}',[PostController::class,'deletePost'])->name('post.
 Route::get('inner-join',[PostController::class,'innerJoin'])->name('post.innerjoin');
 Route::get('left-join',[PostController::class,'leftJoin'])->name('post.leftjoin');
 Route::get('right-join',[PostController::class,'rightJoin'])->name('post.rightjoin');
+
+//model
+Route::get('get-posts',[PostController::class,'getAllPostByModel'])->name('post.get-posts');
