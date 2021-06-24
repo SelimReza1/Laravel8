@@ -44,4 +44,26 @@ class PostController extends Controller
         $post =DB::table('posts')->where('id',$id)->delete();
         return back()->with('post_deleted','post has been deleted successfully');
     }
+
+    public function innerJoin(){
+        $request = DB::table('posts')
+            ->join('users', 'users.id','posts.user_id')
+            ->select('users.name','posts.title','posts.body')
+            ->get();
+            return $request;
+    }
+
+    public function leftJoin(){
+        $result = DB::table('posts')
+            ->leftJoin('users','users.id','posts.user_id')
+            ->get();
+        return $result;
+    }
+
+    public function rightJoin(){
+        $result = DB::table('posts')
+            ->rightJoin('users','users.id','posts.user_id')
+            ->get();
+        return $result;
+    }
 }
