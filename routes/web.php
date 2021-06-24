@@ -44,3 +44,7 @@ Route::get('/posts',[PostController::class,'getAllPost'])->name('post.getAllPost
 
 Route::get('add-post',[PostController::class,'addPost'])->name('post.add');
 Route::post('submit-post',[PostController::class,'submitPost'])->name('post.submit');
+Route::get('single-post/{id}',[PostController::class,'getPostById'])->name('post.single');
+Route::get('edit-post/{id}',[PostController::class,'editPost'])->name('post.edit');
+Route::post('/update-post',[PostController::class,'updatePost'])->name('post.update');
+Route::get('delete-post/{id}',[PostController::class,'deletePost'])->name('post.delete');

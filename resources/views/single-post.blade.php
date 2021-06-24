@@ -18,22 +18,15 @@
                     Add new post
                 </div>
                 <div class="card-body">
-                    @if(Session::has('post_created'))
-                        <div class="alert alert-success" role="alert">
-                            {{Session::get('post_created')}}
-                        </div>
-                    @endif
-                    <form method="POST" action="{{route('post.submit')}}">
-                        @csrf
+                    <form>
                         <div class="form-group">
                             <label for="title">post Title</label>
-                            <input type="text" name="title" class="form-control" placeholder="Enter Post Title">
+                            <input type="text" name="title" class="form-control" value="{{$post->title}}">
                         </div>
                         <div class="form-group">
                             <label for="body">post Description</label>
-                            <textarea type="text" name="body" class="form-control" placeholder="Enter Post Description"> </textarea>
+                            <textarea type="text" name="body" class="form-control">{{$post->body}}</textarea>
                         </div>
-                        <input type="submit" value="submit" class="btn btn-primary mt-3">
                     </form>
                 </div>
             </div>
