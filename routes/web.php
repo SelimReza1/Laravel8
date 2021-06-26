@@ -8,7 +8,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
-
+use \App\Http\Controllers\UploadController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -71,4 +71,10 @@ Route::get('/about', function (){
 Route::get('/contact', function (){
     return view('contact');
 });
+
+//pagination
 Route::get('/users',[\App\Http\Controllers\PaginationController::class,'allUser']);
+
+//file upload
+Route::get('/upload', [UploadController::class, 'uploadForm'])->name('upload.form');
+Route::post('/upload', [UploadController::class, 'fileUpload'])->name('upload.fileUpload');
