@@ -56,3 +56,8 @@ Route::get('right-join',[PostController::class,'rightJoin'])->name('post.rightjo
 
 //model
 Route::get('get-posts',[PostController::class,'getAllPostByModel'])->name('post.get-posts');
+
+//blade
+Route::get('/test', function (){
+   return view('test');
+});
