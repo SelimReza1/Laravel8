@@ -81,7 +81,12 @@ Route::get('/upload', [UploadController::class, 'uploadForm'])->name('upload.for
 Route::post('/upload', [UploadController::class, 'fileUpload'])->name('upload.fileUpload');
 
 //localization
-Route::get('/{locale}', function ($locale){
-    App::SetLocale($locale);
-    return view('locale');
+//Route::get('/{locale}', function ($locale){
+//    App::SetLocale($locale);
+//    return view('locale');
+//});
+
+//facade
+Route::get('/payments',function (){
+   return Payment::process();
 });
