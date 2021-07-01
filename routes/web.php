@@ -11,6 +11,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\UploadController;
+use \App\Http\Controllers\EpostController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -94,3 +95,4 @@ Route::get('/payments',function (){
 
 //Eloquent
 Route::get('/students',[StudentController::class,'index']);
+Route::resource('eposts',EpostController::class);
