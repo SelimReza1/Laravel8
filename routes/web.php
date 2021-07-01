@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\StudentController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
@@ -90,3 +91,6 @@ Route::post('/upload', [UploadController::class, 'fileUpload'])->name('upload.fi
 Route::get('/payments',function (){
    return Payment::process();
 });
+
+//Eloquent
+Route::get('/students',[StudentController::class,'index']);
