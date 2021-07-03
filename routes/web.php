@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\UploadController;
 use \App\Http\Controllers\EpostController;
+use App\Http\Controllers\RoleController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -101,3 +102,7 @@ Route::get('/get-phone/{id}', [UserController::class, 'fetchPhoneByUser']);
 Route::get('/add-epost',[EpostController::class,'addEpost']);
 Route::get('/add-comment/{id}',[EpostController::class,'addComment']);
 Route::get('/get-comments/{id}',[EpostController::class,'getCommentsByPost']);
+Route::get('/add-role', [RoleController::class,'addRole']);
+Route::get('/add-user', [RoleController::class,'addUser']);
+Route::get('/rolesbyuser/{id}', [RoleController::class, 'getAllRoleByUsers']);
+Route::get('/usersbyrole/{id}', [RoleController::class, 'getAllUsesByRole']);
