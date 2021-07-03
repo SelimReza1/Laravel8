@@ -98,3 +98,6 @@ Route::get('/students',[StudentController::class,'index']);
 Route::resource('eposts',EpostController::class);
 Route::get('/add-user', [UserController::class, 'insertRecord']);
 Route::get('/get-phone/{id}', [UserController::class, 'fetchPhoneByUser']);
+Route::get('/add-epost',[EpostController::class,'addEpost']);
+Route::get('/add-comment/{id}',[EpostController::class,'addComment']);
+Route::get('/get-comments/{id}',[EpostController::class,'getCommentsByPost']);

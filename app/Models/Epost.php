@@ -10,4 +10,8 @@ class Epost extends Model
     use HasFactory;
     protected $table = "eposts";
     protected $fillable = ['title'];
+
+    Public function comment(){
+        return $this->hasMany(Comment::class);
+    }
 }

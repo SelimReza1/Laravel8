@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use App\Models\Epost;
 use Illuminate\Http\Request;
 
@@ -88,5 +89,26 @@ class EpostController extends Controller
     {
         $epost->delete();
         return redirect()->route('eposts.index')->with('post deleted','Your Post has been deleted successfully');
+    }
+
+    //one to many relationship
+    Public function addEpost(){
+        $epost = new Epost();
+        $epost->title = 'First Title';
+        $epost->body = 'First Post Description';
+        $epost->save();
+        return 'post has been created';
+    }
+
+    public function addComment($id){
+        $epost = Epost::find($id);
+        $comment = New Comment();
+        $comment->comment = "Second Comment";
+        $epost->comment()->save($comment);
+        return 'comment has been posted';
+    }
+    public function getCommentsByPost($id){
+        $comments = Epost::find($id)->comment;
+        return $comments;
     }
 }
