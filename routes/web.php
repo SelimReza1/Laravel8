@@ -96,3 +96,5 @@ Route::get('/payments',function (){
 //Eloquent
 Route::get('/students',[StudentController::class,'index']);
 Route::resource('eposts',EpostController::class);
+Route::get('/add-user', [UserController::class, 'insertRecord']);
+Route::get('/get-phone/{id}', [UserController::class, 'fetchPhoneByUser']);
