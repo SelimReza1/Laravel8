@@ -7,6 +7,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
@@ -106,3 +107,11 @@ Route::get('/add-role', [RoleController::class,'addRole']);
 Route::get('/add-user', [RoleController::class,'addUser']);
 Route::get('/rolesbyuser/{id}', [RoleController::class, 'getAllRoleByUsers']);
 Route::get('/usersbyrole/{id}', [RoleController::class, 'getAllUsesByRole']);
+
+//Image CRUD
+Route::get('add-teacher',[TeacherController::class,'create'])->name('teacher.create');
+Route::post('add-teacher',[TeacherController::class,'store'])->name('teacher.store');
+Route::get('all-teachers',[TeacherController::class, 'index'])->name('teacher.index');
+Route::get('edit-teacher/{id}',[TeacherController::class, 'edit'])->name('teacher.edit');
+Route::post('update-teacher',[TeacherController::class, 'update'])->name('teacher.update');
+Route::get('delete-teacher/{id}', [TeacherController::class,'destroy'])->name('teacher.destroy');
