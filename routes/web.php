@@ -125,3 +125,6 @@ Route::post('message-send',[ContactController::class,'sendEmail'])->name('contac
 Route::get('add-product',[ProductController::class, 'addProduct']);
 Route::get('/search',[ProductController::class,'search'])->name('search');
 Route::get('/autocomplete',[ProductController::class,'autoComplete'])->name('autocomplete');
+
+//yajra datatables
+Route::get('employee',[\App\Http\Controllers\EmployeeController::class,'index']);
