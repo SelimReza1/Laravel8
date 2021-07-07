@@ -120,3 +120,8 @@ Route::get('delete-teacher/{id}', [TeacherController::class,'destroy'])->name('t
 //Contact
 Route::get('contact-us',[ContactController::class,'contact']);
 Route::post('message-send',[ContactController::class,'sendEmail'])->name('contact.send');
+
+//autocomplete search
+Route::get('add-product',[ProductController::class, 'addProduct']);
+Route::get('/search',[ProductController::class,'search'])->name('search');
+Route::get('/autocomplete',[ProductController::class,'autoComplete'])->name('autocomplete');
