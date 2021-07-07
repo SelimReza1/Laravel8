@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FluentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
@@ -115,3 +116,7 @@ Route::get('all-teachers',[TeacherController::class, 'index'])->name('teacher.in
 Route::get('edit-teacher/{id}',[TeacherController::class, 'edit'])->name('teacher.edit');
 Route::post('update-teacher',[TeacherController::class, 'update'])->name('teacher.update');
 Route::get('delete-teacher/{id}', [TeacherController::class,'destroy'])->name('teacher.destroy');
+
+//Contact
+Route::get('contact-us',[ContactController::class,'contact']);
+Route::post('message-send',[ContactController::class,'sendEmail'])->name('contact.send');

@@ -29,7 +29,7 @@
                             <input type="hidden" name="id" value="{{$teacher->id}}">
                             <div class="form-group">
                                 <label for="name">Name</label>
-                                <input type="text" name="name" value="{{$teacher->name}}" class="form-control" />
+                                <input type="text" name="name" value="{{$teacher->name}}" class="form-control" required />
                             </div>
                             <div class="form-group">
                                 <label for="image">Select Profile Image</label>
