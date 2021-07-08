@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AstudentController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FluentController;
@@ -128,3 +129,7 @@ Route::get('/autocomplete',[ProductController::class,'autoComplete'])->name('aut
 
 //yajra datatables
 Route::get('employee',[\App\Http\Controllers\EmployeeController::class,'index']);
+
+//crud operation by ajax
+Route::get('/astudents',[AstudentController::class,'index']);
+Route::post('/addstudent',[AstudentController::class, 'addStudent'])->name('astudent.add');
