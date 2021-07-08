@@ -46,7 +46,12 @@ class EmployeeDataTable extends DataTable
                     ->setTableId('employee-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
-                    ->orderBy(1);
+                    ->dom('Bfrtip')
+                    ->orderBy(1)
+                    ->buttons(
+                        Button::make('excel'),
+                        Button::make('csv')
+                    );
     }
 
     /**
