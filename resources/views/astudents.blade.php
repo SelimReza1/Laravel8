@@ -27,16 +27,18 @@
                             <th>Last Name</th>
                             <th>Email</th>
                             <th>Phone</th>
+                            <th>Action</th>
                         </tr>
                         </thead>
                             <tbody>
                             @foreach($astudents as $astudent)
-                                <tr>
+                                <tr id="sid{{$astudent->id}}">
                                     <td>{{$astudent->id}}</td>
                                     <td>{{$astudent->firstname}}</td>
                                     <td>{{$astudent->lastname}}</td>
                                     <td>{{$astudent->email}}</td>
                                     <td>{{$astudent->phone}}</td>
+                                    <td><a href="javascript:void(0)" class="btn btn-info" onclick="editStudent({{$astudent->id}})">Edit</a> </td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -48,7 +50,7 @@
     </div>
 </section>
 
-<!-- Modal -->
+<!-- Add Student Modal -->
 <div class="modal fade" id="studentModal" tabindex="-1" role="dialog" aria-labelledby="studentModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -76,6 +78,43 @@
                     <div class="form-group">
                         <label for="firstname">Phone</label>
                         <input type="text" id="phone" name="phone" class="form-control">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Student Modal -->
+<div class="modal fade" id="studentEditModal" tabindex="-1" role="dialog" aria-labelledby="studentEditModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="studentEditModalLabel">Add New Student</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="studentEditForm">
+                    @csrf
+                    <input type="hidden" id="id" name="id">
+                    <div class="form-group">
+                        <label for="firstname2">FirstName</label>
+                        <input type="text" id="firstname2" name="firstname2" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="lastname2">LastName</label>
+                        <input type="text" id="lastname2" name="lastname2" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="email2">Email</label>
+                        <input type="text" id="email2" name="email2" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone2">Phone</label>
+                        <input type="text" id="phone2" name="phone2" class="form-control">
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
@@ -119,6 +158,49 @@
             }
         });
     });
+</script>
+<script>
+    function editStudent(id){
+        $.get('/astudents/'+id, function (student){
+           $("#id").val(student.id);
+           $("#firstname2").val(student.firstname);
+           $("#lastname2").val(student.lastname);
+           $("#email2").val(student.email);
+           $("#phone2").val(student.phone);
+           $("#studentEditModal").modal('toggle');
+        });
+    }
+
+    $("#studentEditModal").submit(function (e){
+        e.preventDefault();
+        let id = $("#id").val();
+        let firstname = $("#firstname2").val();
+        let lastname = $("#lastname2").val();
+        let email = $("#email2").val();
+        let phone = $("#phone2").val();
+        let _token = $("input[name=_token]").val();
+        $.ajax({
+        url:"{{route('astudent.update')}}",
+            type: "PUT",
+            data: {
+                id:id,
+                firstname:firstname,
+                lastname:lastname,
+                email:email,
+                phone:phone,
+                _token:_token
+            },
+            success:function (response){
+            $('#sid' + response.id +' td:nth-child(1)').text(response.id);
+            $('#sid' + response.id +' td:nth-child(2)').text(response.firstname);
+            $('#sid' + response.id +' td:nth-child(3)').text(response.lastname);
+            $('#sid' + response.id +' td:nth-child(4)').text(response.email);
+            $('#sid' + response.id +' td:nth-child(5)').text(response.phone);
+            $("#studentEditModal").modal('toggle');
+            $("#studentEditForm")[0].reset();
+            }
+        });
+    })
 </script>
 </body>
 </html>
