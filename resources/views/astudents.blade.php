@@ -19,6 +19,7 @@
                         Students <a href="#" class="btn btn-success" data-toggle="modal" data-target="#studentModal">Add Student</a>
                     </div>
                     <div class="card-body">
+                        <div class="alert alert-success" id="deletesuccess"></div>
                         <table id="astudentTable" class="table">
                         <thead>
                         <tr>
@@ -38,7 +39,10 @@
                                     <td>{{$astudent->lastname}}</td>
                                     <td>{{$astudent->email}}</td>
                                     <td>{{$astudent->phone}}</td>
-                                    <td><a href="javascript:void(0)" class="btn btn-info" onclick="editStudent({{$astudent->id}})">Edit</a> </td>
+                                    <td>
+                                        <a href="javascript:void(0)" class="btn btn-info" onclick="editStudent({{$astudent->id}})">Edit</a>
+                                        <a href="javascript:void(0)" class="btn btn-danger" onclick="deleteStudent({{$astudent->id}})">Delete</a>
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -201,6 +205,23 @@
             }
         });
     })
+</script>
+<script>
+    function deleteStudent(id){
+        if(confirm("Do you really want to delete this record?"))
+        {
+            $.ajax({
+                url:'/astudents/'+id,
+                type: 'DELETE',
+                data: {
+                    _token : $("input[name=_token]").val()
+                },
+                success: function (response){
+                    $('#sid'+id).remove();
+                }
+            });
+        }
+    }
 </script>
 </body>
 </html>

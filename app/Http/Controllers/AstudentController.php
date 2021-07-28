@@ -37,4 +37,9 @@ class AstudentController extends Controller
         $astudent->save();
         return response()->json($astudent);
     }
+    public function deleteStudent($id){
+        $astudent = Astudent::find($id);
+        $astudent->delete();
+        return response()->json(['success'=>'Record has been deleted successfully']);
+    }
 }

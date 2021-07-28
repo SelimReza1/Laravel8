@@ -135,3 +135,4 @@ Route::get('/astudents',[AstudentController::class,'index']);
 Route::post('/addstudent',[AstudentController::class, 'addStudent'])->name('astudent.add');
 Route::get('/astudents/{id}', [AstudentController::class,'getStudentById']);
 Route::put('/astudent',[AstudentController::class, 'updateStudent'])->name('astudent.update');
+Route::delete('astudents/{id}',[AstudentController::class, 'deleteStudent'])->name('astudent.delete');
