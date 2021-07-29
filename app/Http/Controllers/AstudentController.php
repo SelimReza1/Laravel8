@@ -42,4 +42,11 @@ class AstudentController extends Controller
         $astudent->delete();
         return response()->json(['success'=>'Record has been deleted successfully']);
     }
+
+    public function deleteCheckedStudent(Request $request){
+
+        $ids = $request->ids;
+        Astudent::whereIn('id', $ids)->delete();
+        return response()->json(['success' => 'Student have been deleted']);
+    }
 }
