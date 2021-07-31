@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AstudentController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\ClientSideFormValidation;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FluentController;
 use App\Http\Controllers\HomeController;
@@ -137,3 +138,7 @@ Route::get('/astudents/{id}', [AstudentController::class,'getStudentById']);
 Route::put('/astudent',[AstudentController::class, 'updateStudent'])->name('astudent.update');
 Route::delete('astudents/{id}',[AstudentController::class, 'deleteStudent'])->name('astudent.delete');
 Route::delete('selected-students',[AstudentController::class, 'deleteCheckedStudent'])->name('astudent.deleteSelected');
+
+//client side form validation
+Route::get('/register',[ClientSideFormValidation::class,'index']);
+Route::post('/register',[ClientSideFormValidation::class,'registersubmit'])->name('auth.submit');
