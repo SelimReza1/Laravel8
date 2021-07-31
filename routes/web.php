@@ -8,6 +8,7 @@ use App\Http\Controllers\FluentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\PostscrollController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
@@ -142,3 +143,6 @@ Route::delete('selected-students',[AstudentController::class, 'deleteCheckedStud
 //client side form validation
 Route::get('/register',[ClientSideFormValidation::class,'index']);
 Route::post('/register',[ClientSideFormValidation::class,'registersubmit'])->name('auth.submit');
+
+//infinite scroll pagination
+Route::get('/postscroll', [PostscrollController::class,'index']);

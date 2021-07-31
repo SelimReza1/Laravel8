@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
            PostTableSeeder::class,
            UserTableSeeder::class,
             StudentTableSeeder::class,
+            PostscrollTableSeeder::class,
         ]);
     }
 }
