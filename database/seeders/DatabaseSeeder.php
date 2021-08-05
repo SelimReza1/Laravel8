@@ -20,5 +20,6 @@ class DatabaseSeeder extends Seeder
             StudentTableSeeder::class,
             PostscrollTableSeeder::class,
         ]);
+        \App\Models\Postapi::factory(20)->create();
     }
 }

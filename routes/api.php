@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostapiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -43,3 +44,10 @@ Route::match(['get','post'], '/students', function (Request $req){
 Route::any('/posts', function (Request $req){
    return 'Requested method is '. $req;
 });
+
+//laravel 8 crud api
+Route::get('posts',[PostapiController::class,'index']);
+Route::post('post',[PostapiController::class,'store']);
+Route::get('post/{id}',[PostapiController::class,'show']);
+Route::put('post/{id}',[PostapiController::class,'update']);
+Route::delete('post/{id}',[PostapiController::class,'destroy']);
