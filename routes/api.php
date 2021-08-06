@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PostapiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -46,8 +47,17 @@ Route::any('/posts', function (Request $req){
 });
 
 //laravel 8 crud api
-Route::get('posts',[PostapiController::class,'index']);
-Route::post('post',[PostapiController::class,'store']);
-Route::get('post/{id}',[PostapiController::class,'show']);
-Route::put('post/{id}',[PostapiController::class,'update']);
-Route::delete('post/{id}',[PostapiController::class,'destroy']);
+
+
+//sanctum authentication
+Route::post('register',[AuthController::class,'register']);
+Route::post('login', [AuthController::class,'login']);
+
+Route::group(['middleware'=>['auth:sanctum']],function (){
+    Route::get('posts',[PostapiController::class,'index']);
+    Route::post('post',[PostapiController::class,'store']);
+    Route::get('post/{id}',[PostapiController::class,'show']);
+    Route::put('post/{id}',[PostapiController::class,'update']);
+    Route::delete('post/{id}',[PostapiController::class,'destroy']);
+    Route::post('logout',[AuthController::class,'logout']);
+});
